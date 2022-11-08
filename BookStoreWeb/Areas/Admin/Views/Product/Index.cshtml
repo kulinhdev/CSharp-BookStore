@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Product>
+
+@{
+    ViewData["Title"] = "Product";
+}
+
+<div class="single-page">
+    <h1 class="display-4">Products Page</h1>
+    <div class="create-btn">
+        <a class="btn btn-warning" asp-area="Admin" asp-controller="Product" asp-action="Upsert"><i class="bi bi-plus-lg"></i> Create New</a>
+    </div>
+
+    <div class="mt-4">
+        <table id="dtProduct" class="table" width="100%">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Release Date</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            @*<tbody>
+                @{
+                    int i = 1;
+                }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @i
+                            @{
+                                i++;
+                            }
+                        </td>
+                        <td>@item.Name</td>
+                        <td>@item.Price</td>
+                        <td>@item.ImageUrl</td>
+                        <td>@item.Category.Name</td>
+                        <td>@item.ReaseDate</td>
+                        <td>@item.Description</td>
+                        <td>
+                            <a class="btn btn-warning" asp-route-id="@item.Id" asp-controller="Product" asp-action="Edit"><i class="bi bi-pencil"></i></a>
+                            <a class="btn btn-danger" asp-route-id="@item.Id" asp-controller="Product" asp-action="Delete"><i class="bi bi-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>*@
+        </table>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script src="~/js/product.js"></script>
+}

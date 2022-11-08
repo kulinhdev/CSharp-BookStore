@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Authors";
+}
+
+@model IEnumerable<Author>
+
+<div class="single-page">
+    <h1 class="display-4">Authors Page</h1>
+    <div class="create-btn">
+        <a class="btn btn-warning float-end" asp-area="Admin" asp-controller="Author" asp-action="Create"><i class="bi bi-plus-lg"></i> Create New</a>
+    </div>
+
+    <div class="text-center">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">NO.</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Slug</th>
+                    <th scope="col">Avatar</th>
+                    <th scope="col">Birthday</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int i = 1;
+                }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @i
+                            @{
+                                i++;
+                            }
+                        </td>
+                        <td>@item.Name</td>
+                        <td>@item.Slug</td>
+                        <td><img src="@item.AvatarUrl" width="100" /></td>
+                        <td>@item.Birthday</td>
+                        <td>
+                            <a class="btn btn-warning" asp-route-id="@item.Id" asp-controller="Author" asp-action="Edit"><i class="bi bi-pencil"></i></a>
+                            <a class="btn btn-danger" asp-route-id="@item.Id" asp-controller="Author" asp-action="Delete"><i class="bi bi-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
