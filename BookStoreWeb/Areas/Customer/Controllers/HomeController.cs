@@ -5,6 +5,7 @@ using System.Diagnostics;
 
 namespace BookStoreWeb.Areas.Customer.Controllers
 {
+    [Area("Customer")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -16,6 +17,8 @@ namespace BookStoreWeb.Areas.Customer.Controllers
             _unitOfWork = unitOfWork;
         }
 
+        [Route("")]
+        [Route("home")]
         public IActionResult Index()
         {
             IEnumerable<Product> productList = _unitOfWork.ProductRepository.GetAll(includeProperties: "Category,Author");
@@ -23,6 +26,7 @@ namespace BookStoreWeb.Areas.Customer.Controllers
             return View(productList);
         }
 
+        [Route("products/details/{productId:int}")]
         public IActionResult Details(int productId)
         {
             ShoppingCart cartObj = new()

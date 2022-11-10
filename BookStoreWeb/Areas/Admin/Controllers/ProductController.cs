@@ -9,6 +9,8 @@ using System;
 
 namespace BookStoreWeb.Areas.Admin.Controllers
 {
+    [Area("Admin")]
+    [Route("admin/products")]
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -22,6 +24,7 @@ namespace BookStoreWeb.Areas.Admin.Controllers
             _context = context;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             IEnumerable<Product> objProductList = _unitOfWork.ProductRepository.GetAll();
@@ -29,13 +32,13 @@ namespace BookStoreWeb.Areas.Admin.Controllers
             return View(objProductList);
         }
 
-        [HttpGet]
+        [HttpGet("create")]
         public IActionResult Create()
         {
             return View();
         }
 
-        [HttpPost]
+        [HttpPost("create")]
         [ValidateAntiForgeryToken]
         public IActionResult Create(Product product)
         {
@@ -62,7 +65,7 @@ namespace BookStoreWeb.Areas.Admin.Controllers
             return View(product);
         }
 
-        [HttpGet]
+        [HttpGet("edit/{id:int}")]
         public IActionResult Edit(int? id)
         {
             if (id == null || id == 0)
@@ -81,7 +84,7 @@ namespace BookStoreWeb.Areas.Admin.Controllers
             return View(findProduct);
         }
 
-        [HttpPost]
+        [HttpPost("update")]
         [ValidateAntiForgeryToken]
         public IActionResult Update(Product product)
         {
@@ -102,6 +105,7 @@ namespace BookStoreWeb.Areas.Admin.Controllers
             return View(product);
         }
 
+        [HttpGet("upsert/{id?}")]
         public IActionResult Upsert(int? id)
         {
 
@@ -146,7 +150,7 @@ namespace BookStoreWeb.Areas.Admin.Controllers
 
         }
 
-        [HttpPost]
+        [HttpPost("upsert")]
         [ValidateAntiForgeryToken]
         public IActionResult Upsert(ProductVM productVM, IFormFile? imageFile)
         {
@@ -246,14 +250,14 @@ namespace BookStoreWeb.Areas.Admin.Controllers
         //}
 
         #region API ENDPOINT
-        [HttpGet]
+        [HttpGet("getall")]
         public IActionResult GetAll()
         {
             var productList = _unitOfWork.ProductRepository.GetAll(includeProperties: "Category,Author");
             return Json(new { data = productList });
         }
 
-        [HttpDelete]
+        [HttpDelete("delete/{id:int}")]
         public IActionResult Delete(int? id)
         {
             Product product = _unitOfWork.ProductRepository.GetFirstOrDefault(p => p.Id == id);

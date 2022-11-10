@@ -7,7 +7,7 @@ $(document).ready(function () {
 function loadDataTable() {
     dataTable = $('#dtProduct').DataTable({
         "ajax": {
-            "url": "/Admin/Product/GetAll"
+            "url": "/Admin/Products/GetAll"
         },
         "columns": [
             { "data": "id" },
@@ -27,8 +27,8 @@ function loadDataTable() {
             { "data": "releaseDate" },
             {
                 "data": "id", "render": function (id) {
-                    return `<a class="btn btn-warning" href="/Admin/Product/Upsert?id=${id}"><i class="bi bi-pencil"></i></a>
-                            <a class="btn btn-danger" onclick="deleteProduct('/Admin/Product/Delete/${id}')"><i class="bi bi-trash"></i></a>`
+                    return `<a class="btn btn-warning" href="/Admin/Products/Upsert/${id}"><i class="bi bi-pencil"></i></a>
+                            <a class="btn btn-danger" onclick="deleteProduct('/Admin/Products/Delete/${id}')"><i class="bi bi-trash"></i></a>`
                 }
             },
         ]
@@ -50,6 +50,7 @@ function deleteProduct(url) {
                 url: url,
                 type: "DELETE",
                 success: function (data) {
+                    console.log(data);
                     if (data.success) {
                         dataTable.ajax.reload();
                         toastr.success(data.message);

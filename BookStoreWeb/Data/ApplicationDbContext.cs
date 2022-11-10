@@ -1,10 +1,10 @@
-﻿using BookStoreWeb.Models;
+﻿  using BookStoreWeb.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookStoreWeb.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
@@ -16,16 +16,9 @@ namespace BookStoreWeb.Data
 
         public DbSet<Product> Products { get; set; }
 
-        //public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         //public DbSet<ShoppingCart> ShoppingCarts { get; set; }
 
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<Product>(p =>
-        //    {
-        //        p.Property(b => b.Description).HasColumnType("ntext");
-        //    });
-        //}
     }
 }

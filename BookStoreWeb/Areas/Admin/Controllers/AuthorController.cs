@@ -8,6 +8,7 @@ using System.Diagnostics;
 
 namespace BookStoreWeb.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class AuthorController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

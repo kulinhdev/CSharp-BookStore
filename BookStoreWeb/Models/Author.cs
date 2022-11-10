@@ -15,7 +15,6 @@ namespace BookStoreWeb.Models
         public string Name { get; set; }
 
         [Required]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime Birthday { get; set; }
 
         [DisplayName("Avatar")]
