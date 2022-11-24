@@ -14,6 +14,14 @@ namespace BookStoreWeb.Repository.IRepository
 
         ICategoryRepository CategoryRepository { get; }
 
+        IApplicationUserRepository ApplicationUserRepository { get; }
+
+        IShoppingCartRepository ShoppingCartRepository { get; }
+
+        IOrderHeaderRepository OrderHeaderRepository { get; }
+
+        IOrderDetailRepository OrderDetailRepository { get; }
+
         void Save();
     }
 }

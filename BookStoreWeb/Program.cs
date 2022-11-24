@@ -25,6 +25,13 @@ builder.Services.AddSingleton<IEmailSender, EmailSender>();
 
 // Add razor hot reload
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+// Cookie
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = $"/Identity/Account/Login";
+    options.LogoutPath = $"/Identity/Account/Logout";
+    options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+});
 
 var app = builder.Build();
 

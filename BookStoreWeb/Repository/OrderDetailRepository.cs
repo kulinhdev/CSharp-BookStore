@@ -9,13 +9,18 @@ using System.Threading.Tasks;
 
 namespace BookStoreWeb.Repository
 {
-    public class ApplicationUserRepository : Repository<ApplicationUser>, IApplicationUserRepository
+    public class OrderDetailRepository : Repository<OrderDetail>, IOrderDetailRepository
     {
         private ApplicationDbContext _context;
 
-        public ApplicationUserRepository(ApplicationDbContext context) : base(context)
+        public OrderDetailRepository(ApplicationDbContext context) : base(context)
         {
             _context = context;
+        }
+
+        public void Update(OrderDetail orderDetail)
+        {
+            _context.OrderDetails.Update(orderDetail);
         }
     }
 }

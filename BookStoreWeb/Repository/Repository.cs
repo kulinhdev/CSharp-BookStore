@@ -2,7 +2,6 @@
 using BookStoreWeb.Data;
 using BookStoreWeb.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 using System.Linq.Expressions;
 
 namespace BookStoreWeb.Repository
@@ -26,11 +25,15 @@ namespace BookStoreWeb.Repository
         }
 
         // Include property: Category
-        public IEnumerable<T> GetAll(string? includeProperties = null)
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter = null, string? includeProperties = null)
         {
-            //IQueryable<T> query = DbSet.AsQueryable();
+            IQueryable<T> query = DbSet.AsQueryable();
+            //IQueryable<T> query = DbSet;
 
-            IQueryable<T> query = DbSet;
+            if (filter != null)
+            {
+                query = query.Where(filter);    
+            }
 
             if (includeProperties != null)
             {

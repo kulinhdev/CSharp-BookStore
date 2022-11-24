@@ -7,7 +7,7 @@ $(document).ready(function () {
 function loadDataTable() {
     dataTable = $('#dtProduct').DataTable({
         "ajax": {
-            "url": "/Admin/Products/GetAll"
+            "url": "/Admin/Product/GetAll"
         },
         "columns": [
             { "data": "id" },
@@ -27,8 +27,8 @@ function loadDataTable() {
             { "data": "releaseDate" },
             {
                 "data": "id", "render": function (id) {
-                    return `<a class="btn btn-warning" href="/Admin/Products/Upsert/${id}"><i class="bi bi-pencil"></i></a>
-                            <a class="btn btn-danger" onclick="deleteProduct('/Admin/Products/Delete/${id}')"><i class="bi bi-trash"></i></a>`
+                    return `<a class="btn btn-warning" href="/Admin/Product/Upsert/${id}"><i class="bi bi-pencil"></i></a>
+                            <a class="btn btn-danger" onclick="deleteProduct('/Admin/Product/Delete/${id}')"><i class="bi bi-trash"></i></a>`
                 }
             },
         ]

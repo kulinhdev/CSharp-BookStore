@@ -10,7 +10,6 @@ using System;
 namespace BookStoreWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Route("admin/products")]
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -105,7 +104,7 @@ namespace BookStoreWeb.Areas.Admin.Controllers
             return View(product);
         }
 
-        [HttpGet("upsert/{id?}")]
+        [HttpGet]
         public IActionResult Upsert(int? id)
         {
 
@@ -150,7 +149,7 @@ namespace BookStoreWeb.Areas.Admin.Controllers
 
         }
 
-        [HttpPost("upsert")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Upsert(ProductVM productVM, IFormFile? imageFile)
         {
@@ -250,7 +249,7 @@ namespace BookStoreWeb.Areas.Admin.Controllers
         //}
 
         #region API ENDPOINT
-        [HttpGet("getall")]
+        [HttpGet]
         public IActionResult GetAll()
         {
             var productList = _unitOfWork.ProductRepository.GetAll(includeProperties: "Category,Author");
